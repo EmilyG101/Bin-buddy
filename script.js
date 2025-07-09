@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   init();
 
-  // Hamburger toggle
+  // Hamburger menu
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
@@ -52,15 +52,16 @@ window.addEventListener("DOMContentLoaded", () => {
     hamburger.classList.toggle("active");
   });
 
-  // Slider animation
+  // Continuous slider
   const slider = document.querySelector(".slider");
   let sliderWidth = slider.scrollWidth;
+  let containerWidth = slider.parentElement.offsetWidth;
   let currentX = 0;
 
   function moveSlider() {
     currentX -= 0.5;
-    if (Math.abs(currentX) >= sliderWidth / 2) {
-      currentX = 0;
+    if (Math.abs(currentX) >= sliderWidth) {
+      currentX = containerWidth;
     }
     slider.style.transform = `translateX(${currentX}px)`;
     requestAnimationFrame(moveSlider);
