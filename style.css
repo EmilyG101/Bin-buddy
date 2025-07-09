@@ -139,11 +139,17 @@ main {
   border-radius: 12px;
   border: 3px solid #2b6f27;
   margin-bottom: 1rem;
+  display: block;
 }
 
 #label-container {
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+#webcam {
+  display: flex;
+  justify-content: center;
 }
 
 .slider-container {
@@ -199,4 +205,5 @@ main {
     padding: 1rem;
   }
 }
+
 
