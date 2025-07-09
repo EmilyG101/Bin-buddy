@@ -14,9 +14,11 @@ window.addEventListener("DOMContentLoaded", () => {
     webcam = new tmImage.Webcam(300, 300, flip);
     await webcam.setup();
     await webcam.play();
+    webcam.canvas.setAttribute('playsinline', true);
 
     const webcamDiv = document.getElementById("webcam");
-    webcamDiv.replaceWith(webcam.canvas);
+    webcamDiv.innerHTML = '';
+    webcamDiv.appendChild(webcam.canvas);
 
     labelContainer = document.getElementById("label-container");
     for (let i = 0; i < maxPredictions; i++) {
@@ -69,3 +71,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
   moveSlider();
 });
+
