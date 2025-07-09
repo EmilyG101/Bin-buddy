@@ -2,14 +2,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const URL = "./model/";
   let model, webcam, labelContainer, maxPredictions;
 
-  const startButton = document.getElementById("start-camera-btn");
   const webcamDiv = document.getElementById("webcam");
   labelContainer = document.getElementById("label-container");
 
-  startButton.addEventListener("click", async () => {
-    startButton.disabled = true;
-    startButton.innerText = "Loading model & camera...";
+  // Start immediately
+  init();
 
+  async function init() {
     try {
       // Load the Teachable Machine model
       model = await tmImage.load(URL + "model.json", URL + "metadata.json");
@@ -19,13 +18,13 @@ window.addEventListener("DOMContentLoaded", () => {
       webcam = new tmImage.Webcam(300, 300, true); // width, height, flip
       await webcam.setup(); // request access to webcam
       await webcam.play();
-      webcam.canvas.setAttribute("playsinline", "true"); // for iOS safari
+      webcam.canvas.setAttribute("playsinline", "true"); // for iOS Safari
 
-      // Clear previous content and add webcam canvas
+      // Add webcam canvas to page
       webcamDiv.innerHTML = "";
       webcamDiv.appendChild(webcam.canvas);
 
-      // Prepare label container
+      // Add empty label divs
       labelContainer.innerHTML = "";
       for (let i = 0; i < maxPredictions; i++) {
         const div = document.createElement("div");
@@ -33,18 +32,13 @@ window.addEventListener("DOMContentLoaded", () => {
         labelContainer.appendChild(div);
       }
 
-      // Hide the start button after successful init
-      startButton.style.display = "none";
-
-      // Start the animation loop
+      // Start prediction loop
       window.requestAnimationFrame(loop);
     } catch (error) {
       console.error("Error starting camera or model:", error);
-      startButton.disabled = false;
-      startButton.innerText = "Start Camera";
       alert("Failed to start camera or load model. Check console.");
     }
-  });
+  }
 
   async function loop() {
     webcam.update(); // update webcam frame
@@ -61,7 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Hamburger menu toggle
+  // Hamburger menu
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
