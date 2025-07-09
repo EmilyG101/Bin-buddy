@@ -1,43 +1,4 @@
-// Hamburger menu toggle
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
-
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-
-// Simple image slider
-const slider = document.querySelector(".slider");
-const images = document.querySelectorAll(".slider img");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
-
-let currentIndex = 0;
-
-function showSlide(index) {
-  if (index < 0) {
-    currentIndex = images.length - 1;
-  } else if (index >= images.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
-  }
-  const offset = -currentIndex * 100;
-  slider.style.transform = `translateX(${offset}%)`;
-}
-
-prevBtn.addEventListener("click", () => {
-  showSlide(currentIndex - 1);
-});
-
-nextBtn.addEventListener("click", () => {
-  showSlide(currentIndex + 1);
-});
-
-// Initialize first slide
-showSlide(0);
-
-// Teachable Machine code
+// Teachable Machine Trash Classifier
 const URL = "./model/";
 let model, webcam, labelContainer, maxPredictions;
 
@@ -48,13 +9,13 @@ async function init() {
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
 
-  const flip = true;
+  const flip = true; // mirror webcam
   webcam = new tmImage.Webcam(300, 300, flip);
   await webcam.setup();
   await webcam.play();
   window.requestAnimationFrame(loop);
 
-  // Replace the div#webcam with the canvas element
+  // Replace the #webcam element with the webcam canvas
   document.getElementById("webcam").replaceWith(webcam.canvas);
 
   labelContainer = document.getElementById("label-container");
@@ -78,6 +39,40 @@ async function predict() {
   }
 }
 
+// Auto image slider
+const slider = document.querySelector(".slider");
+const images = document.querySelectorAll(".slider img");
+let currentIndex = 0;
+
+function showSlide(index) {
+  if (index < 0) {
+    currentIndex = images.length - 1;
+  } else if (index >= images.length) {
+    currentIndex = 0;
+  } else {
+    currentIndex = index;
+  }
+  const offset = -currentIndex * 100;
+  slider.style.transform = `translateX(${offset}%)`;
+}
+
+// Auto-slide every 3 seconds
+setInterval(() => {
+  showSlide(currentIndex + 1);
+}, 3000);
+
+// Initialize first slide
+showSlide(0);
+
+// Hamburger menu toggle
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector("nav ul");
+
+menuToggle.addEventListener("click", () => {
+  nav.classList.toggle("show");
+});
+
+// Initialize everything once the window loads
 window.addEventListener("load", () => {
   init();
 });
