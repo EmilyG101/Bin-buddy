@@ -1,3 +1,43 @@
+// Hamburger menu toggle
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
+});
+
+// Simple image slider
+const slider = document.querySelector(".slider");
+const images = document.querySelectorAll(".slider img");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let currentIndex = 0;
+
+function showSlide(index) {
+  if (index < 0) {
+    currentIndex = images.length - 1;
+  } else if (index >= images.length) {
+    currentIndex = 0;
+  } else {
+    currentIndex = index;
+  }
+  const offset = -currentIndex * 100;
+  slider.style.transform = `translateX(${offset}%)`;
+}
+
+prevBtn.addEventListener("click", () => {
+  showSlide(currentIndex - 1);
+});
+
+nextBtn.addEventListener("click", () => {
+  showSlide(currentIndex + 1);
+});
+
+// Initialize first slide
+showSlide(0);
+
+// Teachable Machine code
 const URL = "./model/";
 let model, webcam, labelContainer, maxPredictions;
 
@@ -8,12 +48,13 @@ async function init() {
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
 
-  const flip = true; // flip webcam for mirror view
+  const flip = true;
   webcam = new tmImage.Webcam(300, 300, flip);
-  await webcam.setup(); // ask for webcam access
+  await webcam.setup();
   await webcam.play();
   window.requestAnimationFrame(loop);
 
+  // Replace the div#webcam with the canvas element
   document.getElementById("webcam").replaceWith(webcam.canvas);
 
   labelContainer = document.getElementById("label-container");
@@ -37,4 +78,6 @@ async function predict() {
   }
 }
 
-//init();
+window.addEventListener("load", () => {
+  init();
+});
