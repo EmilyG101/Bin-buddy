@@ -37,4 +37,4 @@ async function predict() {
   }
 }
 
-init();
+//init();
