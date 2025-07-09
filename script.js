@@ -1,47 +1,37 @@
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const URL = "./model/";
   let model, webcam, labelContainer, maxPredictions;
 
   const webcamDiv = document.getElementById("webcam");
   labelContainer = document.getElementById("label-container");
 
-  // Start immediately
-  init();
+  // Load the model
+  try {
+    model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+    maxPredictions = model.getTotalClasses();
 
-  async function init() {
-    try {
-      // Load the Teachable Machine model
-      model = await tmImage.load(URL + "model.json", URL + "metadata.json");
-      maxPredictions = model.getTotalClasses();
+    webcam = new tmImage.Webcam(300, 300, true);
+    await webcam.setup();
+    await webcam.play();
+    webcam.canvas.setAttribute("playsinline", "true");
 
-      // Setup the webcam
-      webcam = new tmImage.Webcam(300, 300, true); // width, height, flip
-      await webcam.setup(); // request access to webcam
-      await webcam.play();
-      webcam.canvas.setAttribute("playsinline", "true"); // for iOS Safari
+    webcamDiv.innerHTML = '';
+    webcamDiv.appendChild(webcam.canvas);
 
-      // Add webcam canvas to page
-      webcamDiv.innerHTML = "";
-      webcamDiv.appendChild(webcam.canvas);
-
-      // Add empty label divs
-      labelContainer.innerHTML = "";
-      for (let i = 0; i < maxPredictions; i++) {
-        const div = document.createElement("div");
-        div.style.margin = "0.3rem 0";
-        labelContainer.appendChild(div);
-      }
-
-      // Start prediction loop
-      window.requestAnimationFrame(loop);
-    } catch (error) {
-      console.error("Error starting camera or model:", error);
-      alert("Failed to start camera or load model. Check console.");
+    labelContainer.innerHTML = '';
+    for (let i = 0; i < maxPredictions; i++) {
+      const div = document.createElement("div");
+      div.style.margin = "0.3rem 0";
+      labelContainer.appendChild(div);
     }
+
+    window.requestAnimationFrame(loop);
+  } catch (error) {
+    console.error("Error initializing model/webcam:", error);
   }
 
   async function loop() {
-    webcam.update(); // update webcam frame
+    webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
   }
@@ -59,25 +49,30 @@ window.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    hamburger.classList.toggle("active");
-  });
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+  }
 
   // Continuous slider
   const slider = document.querySelector(".slider");
-  let sliderWidth = slider.scrollWidth;
-  let containerWidth = slider.parentElement.offsetWidth;
-  let currentX = 0;
+  if (slider && slider.parentElement) {
+    let sliderWidth = slider.scrollWidth;
+    let containerWidth = slider.parentElement.offsetWidth;
+    let currentX = 0;
 
-  function moveSlider() {
-    currentX -= 0.5;
-    if (Math.abs(currentX) >= sliderWidth) {
-      currentX = containerWidth;
+    function moveSlider() {
+      currentX -= 0.5;
+      if (Math.abs(currentX) >= sliderWidth) {
+        currentX = containerWidth;
+      }
+      slider.style.transform = `translateX(${currentX}px)`;
+      requestAnimationFrame(moveSlider);
     }
-    slider.style.transform = `translateX(${currentX}px)`;
-    requestAnimationFrame(moveSlider);
-  }
 
-  moveSlider();
+    moveSlider();
+  }
 });
+
