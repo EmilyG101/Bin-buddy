@@ -1,36 +1,53 @@
-// Wait for DOM to load
 window.addEventListener("DOMContentLoaded", () => {
   const URL = "./model/";
   let model, webcam, labelContainer, maxPredictions;
 
-  async function init() {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
+  const startButton = document.getElementById("start-camera-btn");
+  const webcamDiv = document.getElementById("webcam");
+  labelContainer = document.getElementById("label-container");
 
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
+  startButton.addEventListener("click", async () => {
+    startButton.disabled = true;
+    startButton.innerText = "Loading model & camera...";
 
-    const flip = true;
-    webcam = new tmImage.Webcam(300, 300, flip);
-    await webcam.setup();
-    await webcam.play();
-    webcam.canvas.setAttribute('playsinline', true);
+    try {
+      // Load the Teachable Machine model
+      model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+      maxPredictions = model.getTotalClasses();
 
-    const webcamDiv = document.getElementById("webcam");
-    webcamDiv.innerHTML = '';
-    webcamDiv.appendChild(webcam.canvas);
+      // Setup the webcam
+      webcam = new tmImage.Webcam(300, 300, true); // width, height, flip
+      await webcam.setup(); // request access to webcam
+      await webcam.play();
+      webcam.canvas.setAttribute("playsinline", "true"); // for iOS safari
 
-    labelContainer = document.getElementById("label-container");
-    labelContainer.innerHTML = '';
-    for (let i = 0; i < maxPredictions; i++) {
-      labelContainer.appendChild(document.createElement("div"));
+      // Clear previous content and add webcam canvas
+      webcamDiv.innerHTML = "";
+      webcamDiv.appendChild(webcam.canvas);
+
+      // Prepare label container
+      labelContainer.innerHTML = "";
+      for (let i = 0; i < maxPredictions; i++) {
+        const div = document.createElement("div");
+        div.style.margin = "0.3rem 0";
+        labelContainer.appendChild(div);
+      }
+
+      // Hide the start button after successful init
+      startButton.style.display = "none";
+
+      // Start the animation loop
+      window.requestAnimationFrame(loop);
+    } catch (error) {
+      console.error("Error starting camera or model:", error);
+      startButton.disabled = false;
+      startButton.innerText = "Start Camera";
+      alert("Failed to start camera or load model. Check console.");
     }
-
-    window.requestAnimationFrame(loop);
-  }
+  });
 
   async function loop() {
-    webcam.update();
+    webcam.update(); // update webcam frame
     await predict();
     window.requestAnimationFrame(loop);
   }
@@ -44,9 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  init();
-
-  // Hamburger menu
+  // Hamburger menu toggle
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
