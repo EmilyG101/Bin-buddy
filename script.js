@@ -17,11 +17,11 @@ window.addEventListener("DOMContentLoaded", () => {
     webcam.canvas.setAttribute('playsinline', true);
 
     const webcamDiv = document.getElementById("webcam");
-    webcamDiv.replaceWith(webcam.canvas);
     webcamDiv.innerHTML = '';
     webcamDiv.appendChild(webcam.canvas);
 
     labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = '';
     for (let i = 0; i < maxPredictions; i++) {
       labelContainer.appendChild(document.createElement("div"));
     }
