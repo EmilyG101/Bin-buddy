@@ -1,6 +1,5 @@
 // Wait for DOM to load
 window.addEventListener("DOMContentLoaded", () => {
-  // --- Teachable Machine setup ---
   const URL = "./model/";
   let model, webcam, labelContainer, maxPredictions;
 
@@ -11,12 +10,11 @@ window.addEventListener("DOMContentLoaded", () => {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    const flip = true; // mirror webcam
+    const flip = true;
     webcam = new tmImage.Webcam(300, 300, flip);
     await webcam.setup();
     await webcam.play();
 
-    // Replace #webcam div with webcam canvas
     const webcamDiv = document.getElementById("webcam");
     webcamDiv.replaceWith(webcam.canvas);
 
@@ -43,29 +41,26 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Initialize Teachable Machine
   init();
 
-  // --- Hamburger menu toggle ---
+  // Hamburger toggle
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
-    // Animate hamburger bars (optional)
     hamburger.classList.toggle("active");
   });
 
-  // --- Continuous left-moving slider ---
+  // Slider animation
   const slider = document.querySelector(".slider");
   let sliderWidth = slider.scrollWidth;
-  let containerWidth = slider.parentElement.offsetWidth;
   let currentX = 0;
 
   function moveSlider() {
-    currentX -= 0.5; // adjust speed here (smaller = slower)
-    if (Math.abs(currentX) >= sliderWidth) {
-      currentX = containerWidth;
+    currentX -= 0.5;
+    if (Math.abs(currentX) >= sliderWidth / 2) {
+      currentX = 0;
     }
     slider.style.transform = `translateX(${currentX}px)`;
     requestAnimationFrame(moveSlider);
