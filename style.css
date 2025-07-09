@@ -14,6 +14,7 @@ body {
   overflow-x: hidden;
 }
 
+/* HEADER */
 header {
   width: 100%;
   display: flex;
@@ -32,6 +33,7 @@ header {
   font-size: 1.5rem;
 }
 
+/* HAMBURGER MENU */
 .hamburger {
   cursor: pointer;
   display: flex;
@@ -88,6 +90,7 @@ header {
   text-decoration: underline;
 }
 
+/* MAIN LAYOUT */
 main {
   flex: 1;
   width: 100%;
@@ -96,6 +99,7 @@ main {
   padding: 0 1rem;
 }
 
+/* BUBBLE MESSAGES */
 .bubbles-container {
   display: flex;
   flex-wrap: wrap;
@@ -115,6 +119,7 @@ main {
   text-align: center;
 }
 
+/* CLASSIFIER SECTION */
 .tm-container {
   background: white;
   padding: 1.5rem;
@@ -142,16 +147,26 @@ main {
   display: block;
 }
 
-#label-container {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
+/* Webcam container */
 #webcam {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
+/* Prediction labels */
+#label-container {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2b6f27;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* SLIDER SECTION */
 .slider-container {
   position: relative;
   width: 100%;
@@ -176,6 +191,7 @@ main {
   margin: 0 auto;
 }
 
+/* RESPONSIVE */
 @media (max-width: 600px) {
   header {
     flex-direction: row;
@@ -204,6 +220,9 @@ main {
     right: 10px;
     padding: 1rem;
   }
-}
 
+  #label-container {
+    font-size: 1rem;
+  }
+}
 
