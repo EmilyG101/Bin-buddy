@@ -75,3 +75,21 @@ button:hover {
   background-color: #1f4d1a;
 }
 
+.back-home-btn {
+  background-color: transparent;
+  color: #2b6f27;
+  border: 2px solid #2b6f27;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.back-home-btn:hover {
+  background-color: #2b6f27;
+  color: white;
+}
+
+
