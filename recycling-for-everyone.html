@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recycling For Everyone</title>
+  <link rel="stylesheet" href="recycling-for-everyone.css" />
+</head>
+<body>
+  <div class="container">
+    <button class="back-home-btn" onclick="goHome()">← Back to Home</button>
+    <h1>♿ Recycling For Everyone</h1>
+
+    <section class="description">
+      <p>
+        We believe recycling should be accessible to all — including the elderly, disabled, or anyone who has trouble taking out trash and recycling on their own.
+        This program connects those who need help with volunteers from our community who hold at least the <strong>Sprout Plan</strong> subscription.
+        Volunteers earn bonus points as a thank you for helping neighbors keep our environment clean.
+      </p>
+      <p>
+        Whether you need assistance or want to volunteer, this page helps you get connected and make a difference.
+      </p>
+    </section>
+
+    <section class="request-help">
+      <h2>Request Volunteer Help</h2>
+      <form id="requestForm">
+        <label>
+          Your Name:<br />
+          <input type="text" id="requesterName" required />
+        </label>
+        <label>
+          Address:<br />
+          <input type="text" id="address" required />
+        </label>
+        <label>
+          Type of Recycling Help Needed:<br />
+          <select id="recyclingType" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Trash Pickup">Trash Pickup</option>
+            <option value="Plastic Recycling">Plastic Recycling</option>
+            <option value="Glass Recycling">Glass Recycling</option>
+            <option value="Compost Pickup">Compost Pickup</option>
+            <option value="Metal Recycling">Metal Recycling</option>
+          </select>
+        </label>
+        <label>
+          Additional Notes:<br />
+          <textarea id="notes" placeholder="Any special instructions or info..."></textarea>
+        </label>
+        <button type="submit">Submit Request</button>
+      </form>
+      <div id="requestSuccess" class="success-message" hidden>
+        Thank you! Your request has been posted. A volunteer will contact you soon.
+      </div>
+    </section>
+
+    <section class="volunteer-area">
+      <h2>Volunteer: See Open Requests</h2>
+      <p>
+        To volunteer, you must have a <strong>Sprout Plan</strong> subscription or higher.<br />
+        Claim a request below to help your community and earn <strong>extra bonus points!</strong>
+      </p>
+      <div id="requestsList" class="requests-list">
+        <p>No open requests at the moment.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="recycling-for-everyone.js"></script>
+</body>
+</html>
