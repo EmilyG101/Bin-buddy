@@ -1,1 +1,129 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #2b6f27;
+  line-height: 1.6;
+}
+
+header {
+  background: #e6f2e6;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.back-link {
+  color: #2b6f27;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #f3fdf3;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Point Grid */
+.how-it-works {
+  margin-bottom: 3rem;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.point-card {
+  background: #c8e6c9;
+  padding: 1.2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(43, 111, 39, 0.1);
+}
+
+.point-card span {
+  font-size: 2rem;
+}
+
+.point-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.point-card p {
+  font-weight: bold;
+}
+
+/* Rewards Grid */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.reward-box {
+  background: #e6f2e6;
+  padding: 1.5rem;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(43, 111, 39, 0.15);
+}
+
+.reward-box h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.reward-box p {
+  font-size: 1.1rem;
+}
+
+/* Call to Action */
+.cta {
+  background: #c8e6c9;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  margin-top: 3rem;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
 
