@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subscriptions</title>
+  <link rel="stylesheet" href="subscription.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Choose Your Subscription</h1>
+    <div class="subscriptions">
+      <div class="card" id="seed">
+        <h2>🌱 Seed Plan</h2>
+        <p class="price">$2.99 / month</p>
+        <ul>
+          <li>✅ Earn standard points for every item recycled</li>
+          <li>💸 Redeem points for discounts (e.g., $5 gas cards, $10 grocery coupons)</li>
+          <li>🎁 500 welcome points</li>
+          <li>🧾 Monthly email with exclusive low-tier deals</li>
+        </ul>
+        <button onclick="selectPlan('Seed')">Choose Seed Plan</button>
+      </div>
+
+      <div class="card" id="sprout">
+        <h2>🌿 Sprout Plan</h2>
+        <p class="price">$5.99 / month</p>
+        <ul>
+          <li>✅ Earn 1.5× points per item</li>
+          <li>💸 Redeem faster for coffee cards, Uber/Lyft discounts, $15 store credit</li>
+          <li>🎁 1,500 welcome points</li>
+          <li>🎟️ Monthly raffles for gift cards & more</li>
+          <li>🧾 Early access to limited rewards</li>
+        </ul>
+        <button onclick="selectPlan('Sprout')">Choose Sprout Plan</button>
+      </div>
+
+      <div class="card" id="evergreen">
+        <h2>🌳 Evergreen Plan</h2>
+        <p class="price">$9.99 / month</p>
+        <ul>
+          <li>✅ Earn 2× points per item</li>
+          <li>💸 Redeem for big rewards: vacation discounts, $25–$50 cards</li>
+          <li>🎁 3,000 welcome points</li>
+          <li>🎟️ Exclusive VIP raffles + priority customer support</li>
+          <li>🏷️ Bonus surprise deals monthly</li>
+        </ul>
+        <button onclick="selectPlan('Evergreen')">Choose Evergreen Plan</button>
+      </div>
+    </div>
+  </div>
+  <script src="subscription.js"></script>
+</body>
+</html>
 
