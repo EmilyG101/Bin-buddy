@@ -6,6 +6,7 @@ let lastDetectedClass = "";
 let lastPointTime = 0;
 const POINT_INTERVAL = 3000; // milliseconds
 
+// Only phone and pants have points for now
 const testClasses = {
   phone: 5,
   pants: 5
@@ -49,18 +50,14 @@ async function predict() {
     }
   }
 
-  // Show all class probabilities
   for (let i = 0; i < maxPredictions; i++) {
     const className = prediction[i].className;
     const probability = (prediction[i].probability * 100).toFixed(1);
     labelContainer.childNodes[i].innerHTML = `${className}: ${probability}%`;
   }
 
-  // Add trim() and debug logs
   const classKey = topPrediction.className.toLowerCase().trim();
-  console.log(`Detected class: '${classKey}' at ${(topPrediction.probability * 100).toFixed(1)}%`);
 
-  // Award points only for phone and pants, if confident
   if (topPrediction.probability > 0.85) {
     const now = Date.now();
 
@@ -75,30 +72,13 @@ async function predict() {
       }
     }
   }
-
-  /* Original awarding code commented out:
-  if (topPrediction.probability > 0.85) {
-    const now = Date.now();
-    const classKey = topPrediction.className.toLowerCase();
-
-    if (classKey !== lastDetectedClass || now - lastPointTime > POINT_INTERVAL) {
-      for (const key in pointValues) {
-        if (classKey.includes(key)) {
-          totalPoints += pointValues[key];
-          updatePointsUI();
-          savePoints();
-          lastDetectedClass = classKey;
-          lastPointTime = now;
-          break;
-        }
-      }
-    }
-  }
-  */
 }
 
 function updatePointsUI() {
-  document.getElementById("pointsValue").textContent = totalPoints;
+  const pointsElem = document.getElementById("pointsValue");
+  if(pointsElem) {
+    pointsElem.textContent = totalPoints;
+  }
 }
 
 function savePoints() {
@@ -113,6 +93,7 @@ function loadPoints() {
   }
 }
 
+// Hamburger menu toggling
 document.getElementById("hamburger").addEventListener("click", () => {
   const navMenu = document.getElementById("nav-menu");
   navMenu.classList.toggle("active");
