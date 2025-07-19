@@ -61,7 +61,24 @@ header {
   background-color: #ddd;
   display: flex;
   align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  gap: 10px;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.slider img {
+  height: 180px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
 }
 
 .bubbles-container {
@@ -125,3 +142,4 @@ header {
     display: none;
   }
 }
+
