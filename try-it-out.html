@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Try It Out! - Trash Classifier</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script src="try-it-out.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo">♻️ Trash Classifier</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="fetch-your-points.html">Fetch your points!</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tm-container">
+      <h2>Try the AI Camera!</h2>
+      <div id="webcam"></div>
+      <div id="label-container"></div>
+      <div id="total-points">
+        <h3>Total Points: <span id="pointsValue">0</span></h3>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
