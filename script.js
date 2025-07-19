@@ -41,6 +41,36 @@ async function loop() {
 }
 
 async function predict() {
+  /*
+const pointValues = {
+  "plastic bottle": 5,
+  "aluminum can": 10,
+  "compost (banana peel)": 7,
+  "glass bottle": 8,
+  "cardboard box": 6
+};
+
+if (topPrediction.probability > 0.85) {
+  const now = Date.now();
+  const classKey = topPrediction.className.toLowerCase().trim();
+
+  if (classKey !== lastDetectedClass || now - lastPointTime > POINT_INTERVAL) {
+    for (const key in pointValues) {
+      if (classKey.includes(key)) {
+        totalPoints += pointValues[key];
+        updatePointsUI();
+        savePoints();
+        lastDetectedClass = classKey;
+        lastPointTime = now;
+        console.log(`Added points for ${classKey}. Total: ${totalPoints}`);
+        break;
+      }
+    }
+  }
+}
+*/
+
+
   const prediction = await model.predict(webcam.canvas);
 
   let topPrediction = prediction[0];
