@@ -3,11 +3,9 @@
 <head>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#4caf50" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trash Classifier</title>
-
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -17,9 +15,7 @@
   <header>
     <div class="logo">♻️ Trash Classifier</div>
     <div id="hamburger" class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
     <nav id="nav-menu" class="nav-menu">
       <a href="fetch-your-points.html">Fetch your points!</a>
@@ -31,42 +27,34 @@
   </header>
 
   <main>
-    <!-- SLIDER FIRST -->
     <section class="slider-container">
-      <div class="slider">
-        <img src="https://thumbs.dreamstime.com/b/plastic-bottle-garbage-landfill-surrounded-other-trash-plastic-bottle-garbage-landfill-surrounded-other-trash-created-273651517.jpg" alt="Trash 1" />
-        <img src="https://th.bing.com/th/id/OIP.d8FR0UXITmr-TfWniYa6LgHaEK?w=322&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Trash 2" />
-        <img src="https://frontiergroup.org/wp-content/uploads/2018/02/MN-dump.jpg" alt="Trash 3" />
-        <img src="https://thumbs.dreamstime.com/b/plastic-bottle-garbage-landfill-surrounded-other-trash-plastic-bottle-garbage-landfill-surrounded-other-trash-created-273651517.jpg" alt="Trash 1 duplicate" />
-        <img src="https://th.bing.com/th/id/OIP.d8FR0UXITmr-TfWniYa6LgHaEK?w=322&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="Trash 2 duplicate" />
-        <img src="https://frontiergroup.org/wp-content/uploads/2018/02/MN-dump.jpg" alt="Trash 3 duplicate" />
-      </div>
+      <!-- Slider images here -->
     </section>
 
-    <!-- BUBBLES UNDERNEATH SLIDER -->
     <section class="bubbles-container">
       <div class="bubble">Reduce plastic waste</div>
       <div class="bubble">Recycle correctly</div>
       <div class="bubble">Help the planet</div>
     </section>
 
-    <!-- TEACHABLE MACHINE CAMERA SECTION -->
     <section class="tm-container">
       <h2>Classify Your Trash!</h2>
       <div id="webcam"></div>
       <div id="label-container"></div>
+      <div id="total-points">
+        <h3>Total Points: <span id="pointsValue">0</span></h3>
+      </div>
     </section>
-
-    <script> 
-      if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js').then(
-      () => console.log('Service Worker registered'),
-      (err) => console.log('Service Worker registration failed:', err)
-    );
-  });
-}
-</script>
   </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('Service Worker registered'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
 </body>
 </html>
