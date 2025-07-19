@@ -56,10 +56,13 @@ async function predict() {
     labelContainer.childNodes[i].innerHTML = `${className}: ${probability}%`;
   }
 
+  // Add trim() and debug logs
+  const classKey = topPrediction.className.toLowerCase().trim();
+  console.log(`Detected class: '${classKey}' at ${(topPrediction.probability * 100).toFixed(1)}%`);
+
   // Award points only for phone and pants, if confident
   if (topPrediction.probability > 0.85) {
     const now = Date.now();
-    const classKey = topPrediction.className.toLowerCase();
 
     if (classKey !== lastDetectedClass || now - lastPointTime > POINT_INTERVAL) {
       if (testClasses[classKey] !== undefined) {
@@ -68,6 +71,7 @@ async function predict() {
         savePoints();
         lastDetectedClass = classKey;
         lastPointTime = now;
+        console.log(`Added points for ${classKey}. Total: ${totalPoints}`);
       }
     }
   }
