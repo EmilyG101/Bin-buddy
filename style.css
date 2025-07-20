@@ -147,4 +147,11 @@ header {
   .hamburger {
     display: none;
   }
+  .bubble p.bubble-text {
+  margin-top: 8px;
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #555;
+}
+
 }
