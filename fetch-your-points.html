@@ -55,29 +55,21 @@
     <section class="rewards-section">
       <h2>🎁 What Can You Redeem?</h2>
       <div class="rewards-grid">
-        <div class="reward-box">
+        <div class="reward-box" id="giftCard" data-cost="100" tabindex="0" role="button" aria-pressed="false">
           <h3>100 pts</h3>
           <p>$5 Coffee Gift Card ☕</p>
         </div>
-        <div class="reward-box">
+        <div class="reward-box" id="groceries" data-cost="300" tabindex="0" role="button" aria-pressed="false">
           <h3>300 pts</h3>
           <p>10% Off Groceries 🛒</p>
         </div>
-        <div class="reward-box">
+        <div class="reward-box" id="gasDiscount" data-cost="600" tabindex="0" role="button" aria-pressed="false">
           <h3>600 pts</h3>
           <p>Gas Discount Voucher ⛽</p>
         </div>
-        <div class="reward-box">
-          <h3>1000 pts</h3>
-          <p>Eco Water Bottle 💧</p>
-        </div>
-        <div class="reward-box">
+        <div class="reward-box" id="travelDiscount" data-cost="2000" tabindex="0" role="button" aria-pressed="false">
           <h3>2000 pts</h3>
           <p>Travel Discount ✈️</p>
-        </div>
-        <div class="reward-box">
-          <h3>5000 pts</h3>
-          <p>Free Transit Pass 🚇</p>
         </div>
       </div>
     </section>
@@ -87,12 +79,9 @@
       <p>Join thousands of people reducing waste and fighting climate change — one bottle, one point at a time.</p>
     </section>
 
-    <section class="claim-reward">
-      <h2>Your Points: <span id="points">50</span></h2>
-      <button id="claimBtn">Claim Reward (10 points)</button>
-      <p id="message"></p>
+    <section id="pointsDisplay" style="margin-top: 2rem; font-weight: bold; font-size: 1.3rem;">
+      Your total points: <span id="pointsValue">0</span>
     </section>
-
   </main>
 </body>
 </html>
