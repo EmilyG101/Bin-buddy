@@ -56,12 +56,13 @@ header {
 }
 
 .slider-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;       /* full width */
   overflow: hidden;
   background-color: #ddd;
   border-radius: 8px;
+  max-height: 140px; /* limits height */
+  box-sizing: border-box;
+  padding: 10px 0;
 }
 
 .slider {
@@ -69,19 +70,21 @@ header {
   gap: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 10px 0;
+  padding-left: 10px; /* optional, for some left space */
 }
 
 .slider img {
-  height: 120px !important;   /* force smaller height */
+  height: 120px !important;
   max-height: 120px !important;
   width: auto !important;
-  max-width: none !important;
-  border-radius: 8px;
-  flex-shrink: 0;
-  user-select: none;
-  pointer-events: none;
+  border-radius: 8px !important;
+  flex-shrink: 0 !important;
+  user-select: none !important;
+  pointer-events: none !important;
+  object-fit: cover !important;
+  display: block !important;
 }
+
 
 
 .bubbles-container {
