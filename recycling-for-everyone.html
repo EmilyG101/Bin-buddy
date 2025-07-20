@@ -17,7 +17,7 @@
       <p>
         We believe recycling should be accessible to all — including the elderly, disabled, or anyone who has trouble taking out trash and recycling on their own.
         This program connects those who need help with volunteers from our community.
-        Volunteers play a vital role in helping neighbors keep our environment clean.
+        Volunteers can claim open requests to help neighbors keep our environment clean.
       </p>
       <p>
         Whether you need assistance or want to volunteer, this page helps you get connected and make a difference.
@@ -60,9 +60,10 @@
     <section class="volunteer-area">
       <h2>Volunteer: See Open Requests</h2>
       <p>
-        Claim a request below to help your community. Before claiming, please read and agree to the safety guidelines to protect everyone involved.
-        <br />
-        <strong>Note:</strong> You will receive a confirmation form by email after completing the job. Points are awarded only after verification of completion.
+        Claim a request below to help your community.<br />
+        <strong>Important:</strong> Before claiming, you must agree to our safety and verification agreement.
+        A verification form will be sent to your email after claiming.<br />
+        Points will only be awarded after submission and approval of proof of job completion.
       </p>
       <div id="requestsList" class="requests-list">
         <p>No open requests at the moment.</p>
@@ -71,21 +72,20 @@
   </div>
 
   <!-- Safety Agreement Modal -->
-  <div id="safetyModal" class="modal" hidden>
-    <div class="modal-content">
-      <h3>Volunteer Safety Agreement</h3>
-      <p>
-        By claiming this request, you agree to:
-        <ul>
-          <li>Respect and protect the elder’s safety and property.</li>
-          <li>Be trustworthy, punctual, and courteous.</li>
-          <li>Report any concerns immediately.</li>
-          <li>Complete the assigned job and confirm via email verification before receiving points.</li>
-        </ul>
-      </p>
-      <div class="modal-actions">
-        <button id="agreeBtn">I Agree</button>
-        <button id="cancelBtn">Cancel</button>
+  <div id="safetyModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.5);">
+    <div class="modal-content" style="background:#fff; margin:10% auto; padding:20px; border-radius:10px; max-width:500px; position:relative;">
+      <h2>Volunteer Safety Agreement</h2>
+      <p>Please read and agree to the safety and verification agreement before claiming this job.</p>
+      <ul>
+        <li>Always respect the elderly and their property.</li>
+        <li>Do not share personal information unnecessarily.</li>
+        <li>A verification form will be sent to your email to confirm job completion.</li>
+        <li>Points will only be awarded after form submission and approval.</li>
+        <li>If you feel unsafe at any time, please contact local authorities immediately.</li>
+      </ul>
+      <div style="text-align:right; margin-top:20px;">
+        <button onclick="agreeSafety()" style="background:#2b6f27; color:#fff; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; margin-right:10px;">I Agree</button>
+        <button onclick="closeSafetyModal()" style="background:#ccc; color:#000; padding:10px 20px; border:none; border-radius:8px; cursor:pointer;">Cancel</button>
       </div>
     </div>
   </div>
