@@ -73,8 +73,10 @@ header {
 }
 
 .slider img {
-  height: 120px;
-  width: auto;
+  height: 120px !important;   /* force smaller height */
+  max-height: 120px !important;
+  width: auto !important;
+  max-width: none !important;
   border-radius: 8px;
   flex-shrink: 0;
   user-select: none;
