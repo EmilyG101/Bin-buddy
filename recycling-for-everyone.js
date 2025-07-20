@@ -1,20 +1,20 @@
+// In-memory storage for demo purposes
 const requests = [];
+
+// Bonus points per volunteer claim (example)
 const BONUS_POINTS = 100;
 
+// Helpers to get elements
 const requestForm = document.getElementById('requestForm');
 const requestsList = document.getElementById('requestsList');
 const successMessage = document.getElementById('requestSuccess');
 
-const safetyModal = document.getElementById('safetyModal');
-const agreeBtn = document.getElementById('agreeBtn');
-const cancelBtn = document.getElementById('cancelBtn');
-
-let pendingClaimId = null;
-
+// Go back to homepage
 function goHome() {
   window.location.href = 'index.html';
 }
 
+// Add new request
 requestForm.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -51,6 +51,7 @@ function showSuccessMessage() {
   }, 4000);
 }
 
+// Render requests for volunteers to claim
 function renderRequests() {
   const openRequests = requests.filter(r => !r.claimed);
 
@@ -69,30 +70,13 @@ function renderRequests() {
       <div><strong>Address:</strong> ${r.address}</div>
       <div><strong>Help Type:</strong> ${r.type}</div>
       ${r.notes ? `<div><strong>Notes:</strong> ${r.notes}</div>` : ''}
-      <button onclick="openSafetyModal(${r.id})">Claim & Earn ${BONUS_POINTS} Bonus Points</button>
+      <button onclick="claimRequest(${r.id})">Claim This Job</button>
     `;
     requestsList.appendChild(div);
   });
 }
 
-function openSafetyModal(id) {
-  pendingClaimId = id;
-  safetyModal.hidden = false;
-}
-
-agreeBtn.addEventListener('click', () => {
-  if (pendingClaimId !== null) {
-    claimRequest(pendingClaimId);
-    pendingClaimId = null;
-  }
-  safetyModal.hidden = true;
-});
-
-cancelBtn.addEventListener('click', () => {
-  pendingClaimId = null;
-  safetyModal.hidden = true;
-});
-
+// Claim a request (volunteer action)
 function claimRequest(id) {
   const request = requests.find(r => r.id === id);
   if (!request || request.claimed) {
@@ -101,15 +85,16 @@ function claimRequest(id) {
   }
 
   request.claimed = true;
-  alert(`Thank you for volunteering! A confirmation form will be sent to your email upon job completion before awarding points.`);
+  alert(`Thank you for volunteering! A safety agreement and verification check have been sent to your email. After completing the job, you will receive a verification form to submit for points.`);
 
   renderRequests();
 
   // TODO: Integrate email sending and real points awarding workflow
 }
 
+// Initial render
 renderRequests();
 
+// Expose functions to global so button onclick works
 window.goHome = goHome;
-window.openSafetyModal = openSafetyModal;
 window.claimRequest = claimRequest;
