@@ -76,7 +76,7 @@ header {
 .slider img {
   height: 120px !important;
   max-height: 120px !important;
-  width: auto !important;
+  width: 180px !important;
   border-radius: 8px !important;
   flex-shrink: 0 !important;
   user-select: none !important;
