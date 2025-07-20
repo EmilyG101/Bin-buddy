@@ -5,7 +5,6 @@ body {
   color: #333;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -13,7 +12,6 @@ header {
   background-color: #4caf50;
   padding: 10px 20px;
   color: white;
-  position: relative;
 }
 
 .logo {
@@ -21,7 +19,6 @@ header {
   font-weight: bold;
 }
 
-/* Hamburger Menu */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -36,7 +33,6 @@ header {
   transition: 0.4s;
 }
 
-/* Navigation Menu */
 .nav-menu {
   display: none;
   flex-direction: column;
@@ -59,7 +55,77 @@ header {
   display: flex;
 }
 
-@media (min-width: 768px) {
+.slider-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+}
+
+.slider img {
+  height: 180px;
+  width: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.bubbles-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.bubble {
+  background-color: #e0f7fa;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-weight: bold;
+  text-align: center;
+}
+
+.tm-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#webcam {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#label-container div {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#total-points {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+/* Responsive menu */
+@media (min-width: 600px) {
   .nav-menu {
     display: flex !important;
     flex-direction: row;
@@ -75,54 +141,4 @@ header {
   .hamburger {
     display: none;
   }
-}
-
-/* Slider */
-.slider-container {
-  width: 100%;
-  overflow: hidden;
-  background-color: #ddd;
-}
-
-.slider {
-  display: flex;
-  width: 100%;
-  height: auto;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-
-.slider img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  border-radius: 10px;
-  margin: 5px;
-}
-
-/* Bubbles */
-.bubbles-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 20px;
-  gap: 20px;
-}
-
-.bubble {
-  background-color: #e0f7fa;
-  border-radius: 20px;
-  padding: 15px 25px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-weight: bold;
-  text-align: center;
-  transition: transform 0.3s;
-  cursor: default;
-}
-
-.bubble:hover {
-  transform: scale(1.05);
 }
