@@ -1,20 +1,20 @@
-// In-memory storage for demo purposes
 const requests = [];
-
-// Bonus points per volunteer claim (example)
 const BONUS_POINTS = 100;
 
-// Helpers to get elements
 const requestForm = document.getElementById('requestForm');
 const requestsList = document.getElementById('requestsList');
 const successMessage = document.getElementById('requestSuccess');
 
-// Go back to homepage
+const safetyModal = document.getElementById('safetyModal');
+const agreeBtn = document.getElementById('agreeBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+
+let pendingClaimId = null;
+
 function goHome() {
   window.location.href = 'index.html';
 }
 
-// Add new request
 requestForm.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -51,7 +51,6 @@ function showSuccessMessage() {
   }, 4000);
 }
 
-// Render requests for volunteers to claim
 function renderRequests() {
   const openRequests = requests.filter(r => !r.claimed);
 
@@ -70,13 +69,30 @@ function renderRequests() {
       <div><strong>Address:</strong> ${r.address}</div>
       <div><strong>Help Type:</strong> ${r.type}</div>
       ${r.notes ? `<div><strong>Notes:</strong> ${r.notes}</div>` : ''}
-      <button onclick="claimRequest(${r.id})">Claim & Earn ${BONUS_POINTS} Bonus Points</button>
+      <button onclick="openSafetyModal(${r.id})">Claim & Earn ${BONUS_POINTS} Bonus Points</button>
     `;
     requestsList.appendChild(div);
   });
 }
 
-// Claim a request (volunteer action)
+function openSafetyModal(id) {
+  pendingClaimId = id;
+  safetyModal.hidden = false;
+}
+
+agreeBtn.addEventListener('click', () => {
+  if (pendingClaimId !== null) {
+    claimRequest(pendingClaimId);
+    pendingClaimId = null;
+  }
+  safetyModal.hidden = true;
+});
+
+cancelBtn.addEventListener('click', () => {
+  pendingClaimId = null;
+  safetyModal.hidden = true;
+});
+
 function claimRequest(id) {
   const request = requests.find(r => r.id === id);
   if (!request || request.claimed) {
@@ -84,18 +100,16 @@ function claimRequest(id) {
     return;
   }
 
-  // For demo, just mark as claimed and remove from list
   request.claimed = true;
-  alert(`Thank you for volunteering! You earned ${BONUS_POINTS} bonus points.`);
+  alert(`Thank you for volunteering! A confirmation form will be sent to your email upon job completion before awarding points.`);
 
   renderRequests();
 
-  // TODO: Here you could integrate user accounts, points update, and notify requester
+  // TODO: Integrate email sending and real points awarding workflow
 }
 
-// Initial render
 renderRequests();
 
-// Expose functions to global so button onclick works
 window.goHome = goHome;
+window.openSafetyModal = openSafetyModal;
 window.claimRequest = claimRequest;
