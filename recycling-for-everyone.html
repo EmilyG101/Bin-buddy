@@ -3,7 +3,6 @@
 <head>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#4caf50" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Recycling For Everyone</title>
@@ -17,8 +16,8 @@
     <section class="description">
       <p>
         We believe recycling should be accessible to all — including the elderly, disabled, or anyone who has trouble taking out trash and recycling on their own.
-        This program connects those who need help with volunteers from our community who hold at least the <strong>Sprout Plan</strong> subscription.
-        Volunteers earn bonus points as a thank you for helping neighbors keep our environment clean.
+        This program connects those who need help with volunteers from our community.
+        Volunteers play a vital role in helping neighbors keep our environment clean.
       </p>
       <p>
         Whether you need assistance or want to volunteer, this page helps you get connected and make a difference.
@@ -61,13 +60,34 @@
     <section class="volunteer-area">
       <h2>Volunteer: See Open Requests</h2>
       <p>
-        To volunteer, you must have a <strong>Sprout Plan</strong> subscription or higher.<br />
-        Claim a request below to help your community and earn <strong>extra bonus points!</strong>
+        Claim a request below to help your community. Before claiming, please read and agree to the safety guidelines to protect everyone involved.
+        <br />
+        <strong>Note:</strong> You will receive a confirmation form by email after completing the job. Points are awarded only after verification of completion.
       </p>
       <div id="requestsList" class="requests-list">
         <p>No open requests at the moment.</p>
       </div>
     </section>
+  </div>
+
+  <!-- Safety Agreement Modal -->
+  <div id="safetyModal" class="modal" hidden>
+    <div class="modal-content">
+      <h3>Volunteer Safety Agreement</h3>
+      <p>
+        By claiming this request, you agree to:
+        <ul>
+          <li>Respect and protect the elder’s safety and property.</li>
+          <li>Be trustworthy, punctual, and courteous.</li>
+          <li>Report any concerns immediately.</li>
+          <li>Complete the assigned job and confirm via email verification before receiving points.</li>
+        </ul>
+      </p>
+      <div class="modal-actions">
+        <button id="agreeBtn">I Agree</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script src="recycling-for-everyone.js"></script>
