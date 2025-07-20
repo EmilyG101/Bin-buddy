@@ -98,23 +98,12 @@ main {
   text-align: center;
   box-shadow: 0 4px 10px rgba(43, 111, 39, 0.15);
   cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
 }
 
 .reward-box:hover,
 .reward-box:focus {
   background-color: #c8e6c9;
   outline: none;
-}
-
-.reward-box h3 {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-}
-
-.reward-box p {
-  font-size: 1.1rem;
 }
 
 /* Call to Action */
@@ -135,4 +124,5 @@ main {
   font-size: 1.2rem;
   font-weight: 600;
 }
+
 
