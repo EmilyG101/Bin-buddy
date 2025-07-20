@@ -1,20 +1,18 @@
 // In-memory storage for demo purposes
 const requests = [];
 
-// Bonus points per volunteer claim (example)
 const BONUS_POINTS = 100;
 
-// Helpers to get elements
 const requestForm = document.getElementById('requestForm');
 const requestsList = document.getElementById('requestsList');
 const successMessage = document.getElementById('requestSuccess');
 
-// Go back to homepage
+let currentClaimId = null; // To track which job volunteer is agreeing to
+
 function goHome() {
   window.location.href = 'index.html';
 }
 
-// Add new request
 requestForm.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -51,7 +49,6 @@ function showSuccessMessage() {
   }, 4000);
 }
 
-// Render requests for volunteers to claim
 function renderRequests() {
   const openRequests = requests.filter(r => !r.claimed);
 
@@ -70,31 +67,67 @@ function renderRequests() {
       <div><strong>Address:</strong> ${r.address}</div>
       <div><strong>Help Type:</strong> ${r.type}</div>
       ${r.notes ? `<div><strong>Notes:</strong> ${r.notes}</div>` : ''}
-      <button onclick="claimRequest(${r.id})">Claim This Job</button>
+      <button id="claim-btn-${r.id}" onclick="openSafetyModal(${r.id})">Claim This Job</button>
     `;
     requestsList.appendChild(div);
   });
 }
 
-// Claim a request (volunteer action)
-function claimRequest(id) {
-  const request = requests.find(r => r.id === id);
+// Modal functions
+
+function openSafetyModal(id) {
+  currentClaimId = id;
+  const modal = document.getElementById('safetyModal');
+  modal.style.display = 'block';
+}
+
+function closeSafetyModal() {
+  const modal = document.getElementById('safetyModal');
+  modal.style.display = 'none';
+  currentClaimId = null;
+}
+
+function agreeSafety() {
+  if (currentClaimId === null) return;
+
+  const request = requests.find(r => r.id === currentClaimId);
   if (!request || request.claimed) {
-    alert('This request has already been claimed.');
+    alert('This request has already been claimed or does not exist.');
+    closeSafetyModal();
     return;
   }
 
-  request.claimed = true;
-  alert(`Thank you for volunteering! A safety agreement and verification check have been sent to your email. After completing the job, you will receive a verification form to submit for points.`);
+  // Instead of awarding points immediately:
+  alert(
+    'Verification and safety agreement sent to your email. ' +
+    'Please complete the safety agreement form and submit proof after completing the job to earn points.'
+  );
 
+  // Mark request as claimed (optional, or you can wait for verification)
+  request.claimed = true;
+
+  closeSafetyModal();
   renderRequests();
 
-  // TODO: Integrate email sending and real points awarding workflow
+  // TODO: Send verification email logic here (placeholder)
+  console.log(`Send safety agreement and verification form email for request ID: ${currentClaimId}`);
+
+  currentClaimId = null;
 }
+
+// Close modal if clicking outside the modal content
+window.onclick = function(event) {
+  const modal = document.getElementById('safetyModal');
+  if (event.target === modal) {
+    closeSafetyModal();
+  }
+};
 
 // Initial render
 renderRequests();
 
-// Expose functions to global so button onclick works
+// Expose functions to global scope for inline onclick handlers
 window.goHome = goHome;
-window.claimRequest = claimRequest;
+window.openSafetyModal = openSafetyModal;
+window.closeSafetyModal = closeSafetyModal;
+window.agreeSafety = agreeSafety;
