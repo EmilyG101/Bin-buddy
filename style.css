@@ -151,7 +151,7 @@ header {
 }
 
 /* Responsive styles */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .nav-menu {
     display: flex !important;
     flex-direction: row;
@@ -180,7 +180,7 @@ header {
 
   /* Hide menu by default on mobile */
   .nav-menu {
-    display: none !important;
+    display: none;
   }
 
   /* Show menu only when active */
