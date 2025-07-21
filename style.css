@@ -189,4 +189,34 @@ header {
   top: 50px !important;
   z-index: 9999 !important;
 } 
+
+/* Fix mobile hamburger functionality under 600px */
+@media (max-width: 599px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #4caf50;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    z-index: 10;
+    padding: 10px;
+    border-radius: 8px;
+    width: 160px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
+
