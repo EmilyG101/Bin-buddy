@@ -80,25 +80,27 @@ header {
   display: flex;
 }
 
-/* Slider styles */
+/* Make slider container full width with some side padding */
 .slider-container {
   width: 100%;
+  max-width: 100vw;  /* prevent horizontal overflow */
   overflow: hidden;
   background-color: #ddd;
   border-radius: 8px;
   max-height: 140px;
   box-sizing: border-box;
-  padding: 10px 0;
-  margin: 20px auto;
-  max-width: 900px;
+  padding: 10px 15px; /* add side padding */
+  margin: 20px 0;     /* vertical spacing */
 }
 
+
+/* Slider itself: keep flex and scrolling */
 .slider {
   display: flex;
   gap: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding-left: 10px;
+  padding-left: 5px; /* small left padding */
 }
 
 .slider img {
@@ -113,17 +115,19 @@ header {
   display: block !important;
 }
 
-/* Bubbles container and bubbles */
+/* Bubbles container: make full width with padding and flex wrap */
 .bubbles-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 20px 15px; /* side padding */
   gap: 20px;
-  max-width: 900px;
-  margin: 0 auto 40px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
+/* Bubble size: allow flexible shrinking on smaller screens */
 .bubble {
   background-color: #e0f7fa;
   border-radius: 20px;
@@ -131,8 +135,9 @@ header {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-weight: bold;
   text-align: center;
-  flex: 1 1 250px;
+  flex: 1 1 280px; /* flex-grow, flex-shrink, base width */
   min-width: 250px;
+  max-width: 350px; /* optional max width */
 }
 
 .bubble p.bubble-text {
