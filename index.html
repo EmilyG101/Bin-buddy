@@ -12,7 +12,7 @@
 <body>
   <header>
     <div class="logo">♻️ Trash Classifier</div>
-    <div id="hamburger" class="hamburger">
+    <div id="hamburger" class="hamburger" aria-label="Toggle menu" tabindex="0">
       <span></span><span></span><span></span>
     </div>
     <nav id="nav-menu" class="nav-menu">
@@ -36,7 +36,6 @@
         <img src="https://th.bing.com/th/id/OIP.d8FR0UXITmr-TfWniYa6LgHaEK?w=322&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3" alt="dup Trash 2" />
         <img src="https://frontiergroup.org/wp-content/uploads/2018/02/MN-dump.jpg" alt="dup Trash 3" />
         <img src="https://thumbs.dreamstime.com/b/plastic-bottle-garbage-landfill-surrounded-other-trash-plastic-bottle-garbage-landfill-surrounded-other-trash-created-273651517.jpg" alt="dup dup Trash 1" />
-
       </div>
     </section>
 
@@ -44,33 +43,41 @@
     <section class="bubbles-container">
       <div class="bubble">
         ♻️ Reduce plastic waste
-        <p class="bubble-text">
-          Plastic pollution harms wildlife and ecosystems worldwide. By reducing your plastic use—like choosing reusable bags, bottles, and containers—you help lessen the burden on our planet and keep oceans and land cleaner.
-        </p>
+        <p class="bubble-text">Plastic pollution harms wildlife and ecosystems worldwide. By reducing your plastic use—like choosing reusable bags, bottles, and containers—you help lessen the burden on our planet and keep oceans and land cleaner.</p>
       </div>
+
       <div class="bubble">
         🔄 Recycle correctly
-        <p class="bubble-text">
-          Recycling is only effective when done properly. Many recyclable items get tossed into the wrong bins or contaminated with food waste, making recycling difficult or impossible. Our trash classifier tool guides you on how to sort and recycle items correctly, ensuring your efforts actually help reduce landfill waste.
-        </p>
+        <p class="bubble-text">Recycling is only effective when done properly. Many recyclable items get tossed into the wrong bins or contaminated with food waste, making recycling difficult or impossible. Our trash classifier tool guides you on how to sort and recycle items correctly, ensuring your efforts actually help reduce landfill waste.</p>
       </div>
+
       <div class="bubble">
         🌍 Help the planet
-        <p class="bubble-text">
-          Small actions add up to big impact. By recycling and reducing waste, and by volunteering to assist elderly or disabled community members with their recycling needs, you contribute to a healthier planet and stronger, greener neighborhoods.
-        </p>
+        <p class="bubble-text">Small actions add up to big impact. By recycling and reducing waste, and by volunteering to assist elderly or disabled community members with their recycling needs, you contribute to a healthier planet and stronger, greener neighborhoods.</p>
       </div>
     </section>
   </main>
 
-  <!-- Mobile menu JS -->
   <script>
-    document.getElementById('hamburger').addEventListener('click', function () {
-      document.getElementById('nav-menu').classList.toggle('active');
-      this.classList.toggle('active');
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
     });
 
-    // Service Worker
+    // Optional: Allow keyboard toggle with Enter key
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      }
+    });
+
+    // Service worker registration (keep if you want)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js')
