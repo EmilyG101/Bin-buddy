@@ -12,6 +12,7 @@ header {
   background-color: #4caf50;
   padding: 10px 20px;
   color: white;
+  position: relative;
 }
 
 .logo {
@@ -19,10 +20,12 @@ header {
   font-weight: bold;
 }
 
+/* Hamburger menu icon */
 .hamburger {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  user-select: none;
 }
 
 .hamburger span {
@@ -33,6 +36,20 @@ header {
   transition: 0.4s;
 }
 
+/* Hamburger animation when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Navigation menu */
 .nav-menu {
   display: none;
   flex-direction: column;
@@ -40,29 +57,40 @@ header {
   position: absolute;
   top: 60px;
   right: 20px;
-  z-index: 1;
+  z-index: 10;
   padding: 10px;
   border-radius: 8px;
+  width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .nav-menu a {
   color: white;
   text-decoration: none;
   padding: 10px;
+  display: block;
+}
+
+.nav-menu a:hover {
+  background-color: #45a045;
+  border-radius: 6px;
 }
 
 .nav-menu.active {
   display: flex;
 }
 
+/* Slider styles */
 .slider-container {
-  width: 100%;       /* full width */
+  width: 100%;
   overflow: hidden;
   background-color: #ddd;
   border-radius: 8px;
-  max-height: 140px; /* limits height */
+  max-height: 140px;
   box-sizing: border-box;
   padding: 10px 0;
+  margin: 20px auto;
+  max-width: 900px;
 }
 
 .slider {
@@ -70,7 +98,7 @@ header {
   gap: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding-left: 10px; /* optional, for some left space */
+  padding-left: 10px;
 }
 
 .slider img {
@@ -85,52 +113,36 @@ header {
   display: block !important;
 }
 
-
-
+/* Bubbles container and bubbles */
 .bubbles-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
   gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 40px;
 }
 
 .bubble {
   background-color: #e0f7fa;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 15px 25px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-weight: bold;
   text-align: center;
+  flex: 1 1 250px;
+  min-width: 250px;
 }
 
-.tm-container {
-  padding: 20px;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 10px;
-  margin: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.bubble p.bubble-text {
+  margin-top: 8px;
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #555;
 }
 
-#webcam {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-#label-container div {
-  margin-top: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-#total-points {
-  margin-top: 20px;
-  font-size: 1.2em;
-}
-
-/* Responsive menu */
+/* Responsive styles */
 @media (min-width: 600px) {
   .nav-menu {
     display: flex !important;
@@ -138,6 +150,8 @@ header {
     position: static;
     background: none;
     padding: 0;
+    width: auto;
+    box-shadow: none;
   }
 
   .nav-menu a {
@@ -147,12 +161,4 @@ header {
   .hamburger {
     display: none;
   }
-  
-  .bubble p.bubble-text {
-  margin-top: 8px;
-  font-weight: normal;
-  font-size: 0.9em;
-  color: #555;
-}
-
 }
