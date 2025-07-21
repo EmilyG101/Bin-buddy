@@ -235,3 +235,14 @@ header {
     border-radius: 2px;
   }
 }
+
+  @media screen and (max-width: 768px) {
+  .nav-menu {
+    display: none !important; /* hide menu on mobile by default */
+  }
+
+  .nav-menu.active {
+    display: flex !important; /* show it when active */
+  }
+}
+
