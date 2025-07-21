@@ -125,7 +125,7 @@ function loadPoints() {
 
 // Hamburger menu toggling
 document.getElementById("hamburger").addEventListener("click", () => {
-  console.log("Hamburger clicked");
+  alert("Hamburger clicked!");
   const navMenu = document.getElementById("nav-menu");
   navMenu.classList.toggle("active");
   document.getElementById("hamburger").classList.toggle("active");
