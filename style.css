@@ -166,16 +166,26 @@ header {
   .hamburger {
     display: none;
   }
-
+/*
   .nav-menu.active {
   display: flex !important;
   background-color: rgba(76, 175, 80, 0.95) !important; /* semi-transparent green */
-  border: 2px solid yellow !important;
+  /*border: 2px solid yellow !important;
   width: 200px !important;
   right: 10px !important;
   top: 50px !important;
   z-index: 9999 !important;
-}
+} 
+*/
 
   
 }
+.nav-menu.active {
+  display: flex !important;
+  background-color: rgba(76, 175, 80, 0.95) !important; /* semi-transparent green */
+  /*border: 2px solid yellow !important;
+  width: 200px !important;
+  right: 10px !important;
+  top: 50px !important;
+  z-index: 9999 !important;
+} 
