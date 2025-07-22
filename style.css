@@ -180,7 +180,7 @@ header {
 
   /* Hide menu by default on mobile */
   .nav-menu {
-    display: none;
+    display: none !important;
   }
 
   /* Show menu only when active */
