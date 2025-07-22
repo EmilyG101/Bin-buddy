@@ -124,8 +124,10 @@ function loadPoints() {
 }
 
 // Hamburger menu toggling
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
 document.getElementById("hamburger").addEventListener("click", () => {
-  alert("Hamburger clicked!");
   const navMenu = document.getElementById("nav-menu");
   navMenu.classList.toggle("active");
   document.getElementById("hamburger").classList.toggle("active");
