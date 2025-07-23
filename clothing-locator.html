@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donate Your Clothes</title>
-    <link rel="stylesheet" href="clothing-locator.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo">♻️ Trash Classifier</div>
-      <nav class="nav-menu">
-        <a href="index.html">Home</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clothing Donation Locator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2HdPG5Q7y36uTnGOuN1bZy3X3nktzF3jG4yy7B8="
+    crossorigin=""
+  />
+</head>
+<body>
+  <div class="container">
+    <h1>Donate or Recycle Your Clothes</h1>
+    <p>Find local organizations where you can donate or recycle your used clothes.</p>
 
-    <main>
-      <h1>Donate or Recycle Your Clothes</h1>
-      <p>Enter your address to find the nearest local organizations that accept clothing donations.</p>
-      <form id="location-form">
-        <input type="text" id="address" placeholder="Enter your address" required />
-        <button type="submit">Search</button>
-      </form>
-      <div id="map"></div>
-    </main>
+    <form id="location-form">
+      <input
+        type="text"
+        id="address"
+        placeholder="Enter your city or address"
+        required
+      />
+      <button type="submit">Find Nearby Centers</button>
+    </form>
 
-    <script src="clothing-locator.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
-  </body>
+    <div id="map"></div>
+
+    <button onclick="window.location.href='index.html'" class="back-button">Go Back Home</button>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-pdL3D2dl1oWXZ2f1xosxs7ZfmlplgYqYCI4QJkTvkXc="
+    crossorigin=""
+  ></script>
+  <script src="script.js"></script>
+</body>
 </html>
