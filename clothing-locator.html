@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clothing Recycling Locator</title>
+  <link rel="stylesheet" href="clothing-locator.css" />
+</head>
+<body>
+  <header>
+    <h1>♻️ Clothing Donation Locator</h1>
+    <button onclick="window.location.href='index.html'" class="home-button">🏠 Go Back Home</button>
+  </header>
+
+  <main>
+    <p>Find places near you to donate or recycle your clothes, like Salvation Army or other local organizations.</p>
+    <input type="text" id="address-input" placeholder="Enter your address or ZIP code" />
+    <button onclick="findLocations()">Find Nearby Locations</button>
+
+    <div id="results"></div>
+  </main>
+
+  <script src="clothing-locator.js"></script>
+</body>
+</html>
+
