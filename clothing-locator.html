@@ -3,40 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clothing Donation Locator</title>
-  <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+e2HdPG5Q7y36uTnGOuN1bZy3X3nktzF3jG4yy7B8="
-    crossorigin=""
-  />
+  <title>Clothing Recycling Locator</title>
+  <link rel="stylesheet" href="clothing-locator.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Donate or Recycle Your Clothes</h1>
-    <p>Find local organizations where you can donate or recycle your used clothes.</p>
+  <header>
+    <h1>♻️ Clothing Donation Locator</h1>
+    <button onclick="window.location.href='index.html'" class="home-button">🏠 Go Back Home</button>
+  </header>
 
-    <form id="location-form">
-      <input
-        type="text"
-        id="address"
-        placeholder="Enter your city or address"
-        required
-      />
-      <button type="submit">Find Nearby Centers</button>
-    </form>
+  <main>
+    <p>Find places near you to donate or recycle your clothes, like Salvation Army or other local organizations.</p>
+    <input type="text" id="address-input" placeholder="Enter your address or ZIP code" />
+    <button onclick="findLocations()">Find Nearby Locations</button>
 
-    <div id="map"></div>
+    <div id="results"></div>
+  </main>
 
-    <button onclick="window.location.href='index.html'" class="back-button">Go Back Home</button>
-  </div>
-
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-pdL3D2dl1oWXZ2f1xosxs7ZfmlplgYqYCI4QJkTvkXc="
-    crossorigin=""
-  ></script>
-  <script src="script.js"></script>
+  <script src="clothing-locator.js"></script>
 </body>
 </html>
