@@ -1,28 +1,53 @@
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 40.7128, lng: -74.006 },
-    zoom: 12,
-  });
+const form = document.getElementById('location-form');
+const mapDiv = document.getElementById('map');
 
-  const geocoder = new google.maps.Geocoder();
+let map = L.map('map').setView([40.7128, -74.0060], 12); // Default: NYC
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+}).addTo(map);
 
-  document.getElementById("location-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const address = document.getElementById("address").value;
-    geocodeAddress(geocoder, map, address);
-  });
-}
+const locations = [
+  {
+    name: 'Salvation Army - Manhattan',
+    lat: 40.73061,
+    lon: -73.935242,
+  },
+  {
+    name: 'Goodwill NY - Brooklyn',
+    lat: 40.6782,
+    lon: -73.9442,
+  },
+  {
+    name: 'Local Church Donation Center',
+    lat: 40.758896,
+    lon: -73.98513,
+  },
+];
 
-function geocodeAddress(geocoder, map, address) {
-  geocoder.geocode({ address: address }, function (results, status) {
-    if (status === "OK") {
-      map.setCenter(results[0].geometry.location);
-      new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location,
-      });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
-}
+locations.forEach(loc => {
+  L.marker([loc.lat, loc.lon]).addTo(map).bindPopup(loc.name);
+});
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const address = document.getElementById('address').value;
+
+  const res = await fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+      address
+    )}`
+  );
+  const data = await res.json();
+
+  if (data && data.length > 0) {
+    const { lat, lon } = data[0];
+    map.setView([lat, lon], 13);
+    L.marker([lat, lon])
+      .addTo(map)
+      .bindPopup('Your Location')
+      .openPopup();
+  } else {
+    alert('Location not found. Try a different address.');
+  }
+});
