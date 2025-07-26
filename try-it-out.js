@@ -6,10 +6,14 @@ let lastDetectedClass = "";
 let lastPointTime = 0;
 const POINT_INTERVAL = 3000;
 
+// 🔁 Updated classes and points:
 const testClasses = {
-  phone: 5,
-  pants: 5,
-  // add other classes and points here as you want
+  "glass and plastic bottles": 5,
+  "paper": 5,
+  "compost": 10,
+  "trash": 1,
+  "hazardous waste": 15,
+  "special waste": 10
 };
 
 async function init() {
