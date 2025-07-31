@@ -64,7 +64,7 @@ function renderRequests() {
     div.className = 'request-item';
     div.innerHTML = `
       <strong>${r.name}</strong>
-      <div><strong>Address:</strong> ${r.address}</div>
+      <div><strong>Postal Code:</strong> ${r.address}</div>
       <div><strong>Help Type:</strong> ${r.type}</div>
       ${r.notes ? `<div><strong>Notes:</strong> ${r.notes}</div>` : ''}
       <button id="claim-btn-${r.id}" onclick="openSafetyModal(${r.id})">Claim This Job</button>
