@@ -54,3 +54,16 @@ button {
   margin-left: auto;
   margin-right: auto;
 }
+
+.clothing-description {
+  background-color: #e6f2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(43, 111, 39, 0.15);
+  font-weight: 600;
+  color: #264d14;
+  line-height: 1.5;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
