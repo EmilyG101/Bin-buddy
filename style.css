@@ -143,12 +143,25 @@ header {
   max-width: 350px; /* optional max width */
 }
 
+.green-bubble {
+  background-color: #c8e6c9; /* light green */
+  color: #2e7d32;
+}
+
+
 .bubble p.bubble-text {
   margin-top: 8px;
   font-weight: normal;
   font-size: 0.9em;
   color: #555;
 }
+
+.extra-space {
+  margin-top: 60px;
+  border-top: 1px dashed #ccc;
+  padding-top: 30px;
+}
+
 
 /* Responsive styles */
 @media (min-width: 768px) {
