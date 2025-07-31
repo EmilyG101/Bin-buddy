@@ -144,9 +144,10 @@ header {
 }
 
 .green-bubble {
-  background-color: #c8e6c9; /* light green */
-  color: #2e7d32;
+  background-color: #a5d6a7 !important; /* light green */
+  color: #1b5e20 !important;            /* darker green text */
 }
+
 
 
 .bubble p.bubble-text {
