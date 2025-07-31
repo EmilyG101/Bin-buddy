@@ -6,7 +6,7 @@ let lastDetectedClass = "";
 let lastPointTime = 0;
 const POINT_INTERVAL = 3000;
 
-// 🔁 Updated classes and points:
+// Updated classes and points
 const testClasses = {
   "glass and plastic bottles": 5,
   "paper": 5,
@@ -57,7 +57,7 @@ async function predict() {
   for (let i = 0; i < maxPredictions; i++) {
     const className = prediction[i].className;
     const probability = (prediction[i].probability * 100).toFixed(1);
-    labelContainer.childNodes[i].innerHTML = ${className}: ${probability}%;
+    labelContainer.childNodes[i].innerHTML = `${className}: ${probability}%`;
   }
 
   const classKey = topPrediction.className.toLowerCase().trim();
@@ -72,7 +72,7 @@ async function predict() {
         savePoints();
         lastDetectedClass = classKey;
         lastPointTime = now;
-        console.log(Added points for ${classKey}. Total: ${totalPoints});
+        console.log(`Added points for ${classKey}. Total: ${totalPoints}`);
       }
     }
   }
