@@ -2,11 +2,10 @@ const URL = "./model/";
 let model, webcam, labelContainer, maxPredictions;
 
 let totalPoints = 0;
-let lastDetectedClass = "";
+const POINT_INTERVAL = 2000;
+let lastDetectedClass = null;
 let lastPointTime = 0;
-const POINT_INTERVAL = 3000;
 
-// 🔁 Updated classes and points:
 const testClasses = {
   "glass and plastic bottles": 5,
   "paper": 5,
@@ -17,25 +16,26 @@ const testClasses = {
 };
 
 async function init() {
-  model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+
+  model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
 
-  webcam = new tmImage.Webcam(300, 300, true);
+  const flip = true;
+  webcam = new tmImage.Webcam(400, 400, flip);
   await webcam.setup();
   await webcam.play();
-  webcam.canvas.setAttribute("playsinline", "true");
+  window.requestAnimationFrame(loop);
 
-  document.getElementById("webcam").appendChild(webcam.canvas);
-
+  document.getElementById("webcam-container").appendChild(webcam.canvas);
   labelContainer = document.getElementById("label-container");
-  labelContainer.innerHTML = "";
   for (let i = 0; i < maxPredictions; i++) {
-    const div = document.createElement("div");
-    labelContainer.appendChild(div);
+    labelContainer.appendChild(document.createElement("div"));
   }
 
   loadPoints();
-  window.requestAnimationFrame(loop);
+  updatePointsUI();
 }
 
 async function loop() {
@@ -57,14 +57,26 @@ async function predict() {
   for (let i = 0; i < maxPredictions; i++) {
     const className = prediction[i].className;
     const probability = (prediction[i].probability * 100).toFixed(1);
-    labelContainer.childNodes[i].innerHTML = `${className}: ${probability}%`;
+
+    const labelDiv = labelContainer.childNodes[i];
+    labelDiv.innerHTML = `${className}: ${probability}%`;
+
+    // Remove old message if it exists
+    const oldMsg = labelDiv.querySelector(".confidence-msg");
+    if (oldMsg) oldMsg.remove();
+
+    // Add message if prediction is high-confidence
+    if (probability >= 90) {
+      const msg = document.createElement("span");
+      msg.className = "confidence-msg";
+      msg.textContent = `This object is ${className}`;
+      labelDiv.appendChild(msg);
+    }
   }
 
   const classKey = topPrediction.className.toLowerCase().trim();
-
   if (topPrediction.probability > 0.85) {
     const now = Date.now();
-
     if (classKey !== lastDetectedClass || now - lastPointTime > POINT_INTERVAL) {
       if (testClasses[classKey] !== undefined) {
         totalPoints += testClasses[classKey];
@@ -79,22 +91,21 @@ async function predict() {
 }
 
 function updatePointsUI() {
-  const pointsElem = document.getElementById("pointsValue");
-  if (pointsElem) {
-    pointsElem.textContent = totalPoints;
+  const pointsElement = document.getElementById("points");
+  if (pointsElement) {
+    pointsElement.textContent = totalPoints;
   }
 }
 
 function savePoints() {
-  localStorage.setItem("trashClassifierPoints", totalPoints);
+  localStorage.setItem("totalPoints", totalPoints.toString());
 }
 
 function loadPoints() {
-  const saved = localStorage.getItem("trashClassifierPoints");
-  if (saved) {
-    totalPoints = parseInt(saved, 10);
-    updatePointsUI();
+  const savedPoints = localStorage.getItem("totalPoints");
+  if (savedPoints !== null) {
+    totalPoints = parseInt(savedPoints, 10);
   }
 }
 
-window.addEventListener("DOMContentLoaded", init);
+init();
