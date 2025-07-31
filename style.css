@@ -148,33 +148,31 @@ header {
   color: #1b5e20 !important;            /* darker green text */
 }
 
-/* Make container fixed and full width at bottom */
+/* Footer container settings */
 .green-footer-container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100vw;
-  padding: 0 15px; /* optional side padding */
-  box-sizing: border-box;
-  z-index: 10000;
+  padding: 0;
+  margin: 0;
+  z-index: 9999;
   display: flex;
-  justify-content: center; /* center bubble */
+  justify-content: center;
 }
 
-/* Style the bubble itself */
-.green-footer-bubble {
-  background-color: #4caf50;  /* green */
-  color: white;
-  border-radius: 0;           /* no rounded corners */
+/* Force the bubble to be green and full width */
+.green-footer-container .bubble.green-footer-bubble {
+  background-color: #4caf50 !important;  /* ✅ force green */
+  color: white !important;
+  width: 100%;
+  border-radius: 0;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
   padding: 15px 25px;
   font-weight: bold;
-  width: 100%;                /* fill the container */
-  max-width: none !important; /* override max width */
-  min-width: unset !important;
-  flex: none !important;
   text-align: center;
-  font-size: 1.1rem;
+  max-width: none !important;
+  flex: none !important;
 }
 
 
