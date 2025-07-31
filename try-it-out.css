@@ -128,3 +128,16 @@ main {
     height: auto !important;
   }
 }
+
+.confidence-msg {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 8px;
+  background-color: #dcedc8;
+  color: #2e7d32;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
